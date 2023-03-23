@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Form = () => {
+const Form = ({patients, setPatients}) => {
 
     const [petName, setPetName] = useState("");
     const [owner, setOwner] = useState("");
@@ -12,6 +12,13 @@ const Form = () => {
     const [error, setError] = useState(false);
     const [errorText, setErrorText] = useState();
 
+    const cleanForm =() => {
+        setPetName('');
+        setOwner('');
+        setEmail('');
+        setDate('');
+        setSymptoms('');
+    } 
     const handleSubmit = (e) => {
         e.preventDefault();
         if([petName,owner,email,date,symptoms].includes('')){
@@ -20,6 +27,16 @@ const Form = () => {
             return;
         }else{
             setError(false);
+            const objPatient = {
+                petName,
+                owner,
+                email,
+                date,
+                symptoms
+            };
+
+            setPatients([...patients, objPatient]);
+            cleanForm();
         }
     }
 
