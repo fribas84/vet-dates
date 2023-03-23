@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import ErrorHandler from "./ErrorHandler";
 
 const Form = ({patients, setPatients}) => {
 
@@ -53,9 +54,7 @@ const Form = ({patients, setPatients}) => {
                 className="m-3 bg-white shadow-md rounded-lg py-10 px-5 mb-10"
                 >
                 {error && (
-                    <div className="text-white text-center uppercase font-bold p-3 mb-3 rounded-md bg-red-600">
-                        <p>{errorText}</p>
-                    </div>
+                    <ErrorHandler errorText = {errorText}/>
                 )}
                 <div className="mb-5">
                     <label
