@@ -20,6 +20,10 @@ const Form = ({patients, setPatients}) => {
         setDate('');
         setSymptoms('');
     } 
+
+    const createId = () =>{
+        return Math.random().toString(36).substring(2) + '-' +  Date.now().toString(36)
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         if([petName,owner,email,date,symptoms].includes('')){
@@ -27,13 +31,15 @@ const Form = ({patients, setPatients}) => {
             setErrorText("All fields are mandatory.");
             return;
         }else{
+            
             setError(false);
             const objPatient = {
                 petName,
                 owner,
                 email,
                 date,
-                symptoms
+                symptoms,
+                id: createId()
             };
 
             setPatients([...patients, objPatient]);
@@ -115,7 +121,6 @@ const Form = ({patients, setPatients}) => {
                     <input
                         id="date"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                        ma
                         type="date"
                         value={date}
                         onChange={(e)=>setDate(e.target.value)}

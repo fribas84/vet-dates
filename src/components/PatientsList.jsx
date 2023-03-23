@@ -10,6 +10,7 @@ const PatientsList = ({patients}) => {
           patients.map((px)=>{
              return(
             <Patient
+              key={px.id}
               petName={px.petName}
               owner={px.owner}
               email={px.email}
