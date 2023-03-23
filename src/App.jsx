@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Form from './components/Form';
 import Header from './components/Header';
-import Patients from './components/Patients';
+import PatientsList from './components/PatientsList';
 
 
 const App = () => {
@@ -18,7 +18,8 @@ const App = () => {
         <Form
           patients = {patients}
           setPatients = {setPatients} />
-        <Patients />
+        <PatientsList
+          patients={patients}/>
       </div>
     </div>
   )
