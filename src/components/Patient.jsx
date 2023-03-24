@@ -3,6 +3,13 @@ import React from 'react'
 
 const Patient = ({patient,setPatient, deletePatient}) => {
 
+  const handleDelete = () =>{
+    const resp =  confirm('Do you want to remove patient ' + patient.petName + '?' );
+    if (resp){
+      deletePatient(patient.key);
+    }
+  }
+
   return (
     <div className='bg-white shadow-md m-3 rounded-lg py-5 px-5'>
         <p className='font-bold mb-1 text-gray-700 upercase'>Pet Name: {' '}
@@ -35,7 +42,7 @@ const Patient = ({patient,setPatient, deletePatient}) => {
           <button
             type='button'
             className='py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg'
-            onClick={()=>deletePatient(patient.key)}
+            onClick={handleDelete}
             >Delete</button>
         </div>
     </div>
