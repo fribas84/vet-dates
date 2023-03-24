@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ErrorHandler from "./ErrorHandler";
 
-const Form = ({patients, setPatients}) => {
+const Form = ({patients, setPatients, patient}) => {
 
     const [petName, setPetName] = useState("");
     const [owner, setOwner] = useState("");
@@ -13,6 +13,10 @@ const Form = ({patients, setPatients}) => {
     const [error, setError] = useState(false);
     const [errorText, setErrorText] = useState();
 
+    useEffect(()=>{
+        fillForm();
+    },[patient])
+
     const cleanForm =() => {
         setPetName('');
         setOwner('');
@@ -21,6 +25,13 @@ const Form = ({patients, setPatients}) => {
         setSymptoms('');
     } 
 
+    const fillForm = ()=>{
+        setPetName(patient.petName);
+        setOwner(patient.owner);
+        setEmail(patient.email);
+        setDate(patient.date);
+        setSymptoms(patient.symptoms);
+    }
     const createId = () =>{
         return Math.random().toString(36).substring(2) + '-' +  Date.now().toString(36)
     }
@@ -74,7 +85,7 @@ const Form = ({patients, setPatients}) => {
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
                         type="text"
                         placeholder="Pet Name"
-                        value={petName}
+                        value={petName || ''}
                         onChange={(e) => setPetName(e.target.value)}
 
                     />
@@ -91,7 +102,7 @@ const Form = ({patients, setPatients}) => {
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
                         type="text"
                         placeholder="Owner Name"
-                        value={owner}
+                        value={owner || ''}
                         onChange={(e) => setOwner(e.target.value)}
                     />
                 </div>
@@ -107,7 +118,7 @@ const Form = ({patients, setPatients}) => {
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
                         type="email"
                         placeholder="email"
-                        value={email}
+                        value={email || ''}
                         onChange={(e)=>setEmail(e.target.value)}
                     />
                 </div>
@@ -122,7 +133,7 @@ const Form = ({patients, setPatients}) => {
                         id="date"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
                         type="date"
-                        value={date}
+                        value={date || ''}
                         onChange={(e)=>setDate(e.target.value)}
                     />
                 </div>
@@ -138,7 +149,7 @@ const Form = ({patients, setPatients}) => {
                         id="symptoms"
                         placeholder="Describe the symptoms"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                        value={symptoms}
+                        value={symptoms || ''}
                         onChange={(e)=>setSymptoms(e.target.value)}
                     />
                 </div>
