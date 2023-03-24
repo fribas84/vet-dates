@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Patient = ({patient,setPatient}) => {
+const Patient = ({patient,setPatient, deletePatient}) => {
 
   return (
     <div className='bg-white shadow-md m-3 rounded-lg py-5 px-5'>
@@ -35,6 +35,7 @@ const Patient = ({patient,setPatient}) => {
           <button
             type='button'
             className='py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg'
+            onClick={()=>deletePatient(patient.key)}
             >Delete</button>
         </div>
     </div>

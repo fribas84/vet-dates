@@ -9,10 +9,14 @@ const App = () => {
   const [patients, setPatients] = useState([]);
   const [patient,setPatient] = useState({});
 
+  const deletePatient = (key)=>{
+    const patientsUpdated = patients.filter(px=>px.key !== key);
+    setPatients(patientsUpdated);
+  }
+
   return (
     <div className="container mx-auto mt-15">
       <Header
-      
       />
       <div className='mt-12 flex'> 
         <Form
@@ -21,7 +25,8 @@ const App = () => {
           patient={patient} />
         <PatientsList
           patients={patients}
-          setPatient={setPatient}/>
+          setPatient={setPatient}
+          deletePatient={deletePatient}/>
       </div>
     </div>
   )
