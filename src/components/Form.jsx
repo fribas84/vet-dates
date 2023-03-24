@@ -35,6 +35,7 @@ const Form = ({patients, setPatients, patient}) => {
     const createId = () =>{
         return Math.random().toString(36).substring(2) + '-' +  Date.now().toString(36)
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if([petName,owner,email,date,symptoms].includes('')){
@@ -49,11 +50,19 @@ const Form = ({patients, setPatients, patient}) => {
                 owner,
                 email,
                 date,
-                symptoms,
-                key: createId()
+                symptoms
             };
 
-            setPatients([...patients, objPatient]);
+            if(patient.key){
+                objPatient.key = patient.key;
+                const patientsUpdated = patients.map(px => px.key === patient.key? objPatient: px);
+                setPatients(patientsUpdated);
+            }
+            else{
+                objPatient.key = createId();
+                setPatients([...patients, objPatient]);
+            }
+            
             cleanForm();
         }
     }
@@ -157,6 +166,7 @@ const Form = ({patients, setPatients, patient}) => {
                 <input
                     type="submit"
                     className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all rounded-md"
+                    value={patient.key? 'Edit Patient':'Add Patient'}
                 />
             </form>
         </div>
