@@ -39,7 +39,7 @@ const Form = ({patients, setPatients}) => {
                 email,
                 date,
                 symptoms,
-                id: createId()
+                key: createId()
             };
 
             setPatients([...patients, objPatient]);

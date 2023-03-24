@@ -2,7 +2,7 @@ import React from 'react'
 import Patient from './Patient'
 
 
-const PatientsList = ({patients}) => {
+const PatientsList = ({patients, setPatient}) => {
   return (
     <div className='md:w-1/2 lg:w-3/5 md:h-screen overflow-scroll'>
         { patients && patients.length ? (
@@ -12,12 +12,14 @@ const PatientsList = ({patients}) => {
           patients.map((px)=>{
              return(
             <Patient
-              key={px.id}
-              petName={px.petName}
-              owner={px.owner}
-              email={px.email}
-              date={px.date}
-              symptoms={px.symptoms}/>
+              patient = {px}
+              key={px.key}
+              // petName={px.petName}
+              // owner={px.owner}
+              // email={px.email}
+              // date={px.date}
+              // symptoms={px.symptoms}
+              setPatient={setPatient}/>
           )})
         }
         </>
